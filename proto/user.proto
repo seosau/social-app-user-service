@@ -6,6 +6,7 @@ import "shared_message.proto";
 
 service UserService {
     rpc getOneUser(GetOneUserRequest) returns (GetOneUserResponse) {};
+    rpc getManyUser(GetManyUserRequest) returns (GetManyUserResponse) {};
 }
 
 message User {
@@ -27,4 +28,12 @@ message GetOneUserRequest {
 
 message GetOneUserResponse {
     User user = 1;
+}
+
+message GetManyUserRequest {
+    repeated string ids = 1;
+}
+
+message GetManyUserResponse {
+    repeated User users = 1;
 }

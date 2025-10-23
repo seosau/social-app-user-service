@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { DataSource, Repository } from "typeorm";
+import { DataSource, In, Repository } from "typeorm";
 import { User } from "./entities/user.entity";
 
 @Injectable()
@@ -12,6 +12,14 @@ export class UserRepository extends Repository<User> {
         return this.findOne({
             where: {
                 id
+            }
+        })
+    }
+
+    async findByIds(ids: string[]) {
+        return this.find({
+            where: {
+                id: In(ids)
             }
         })
     }
